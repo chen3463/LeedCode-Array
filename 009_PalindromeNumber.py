@@ -1,9 +1,5 @@
-class Solution(object):
-    def isPalindrome(self, x):
-        """
-        :type x: int
-        :rtype: bool
-        """
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
         if x < 0 or x == 10:
             return False
         L = []
@@ -11,8 +7,8 @@ class Solution(object):
         while o >= 10:
             # print o % 10
             L = [o % 10] + L
-            o = o / 10 
-            
+            o = int(o / 10) 
+           
             
         L = [o] + L
         # return L
