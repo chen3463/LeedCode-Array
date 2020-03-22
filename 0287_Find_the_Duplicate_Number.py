@@ -23,5 +23,13 @@ class Solution1:
         for i in range(len(nums)-1):
             if nums[i] == nums[i+1]:
                 return nums[i]
-                
+## Complexity O(nlogn)
+## Space O(1) or Space O(n)
               
+class Solution2:
+    def findDuplicate(self, nums: List[int]) -> int:
+        temp = []
+        for num in nums:
+            if num in temp:
+                return num
+            temp.append(num)
