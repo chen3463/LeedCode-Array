@@ -1,4 +1,4 @@
-/*
+'''
 Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 Example 1:
 Input:
@@ -16,7 +16,9 @@ Input:
   [9,10,11,12]
 ]
 Output: [1,2,3,4,8,12,11,10,9,5,6,7]
-*/
+'''
+
+# python 2
 class Solution(object):
     def spiralOrder(self, matrix):
         """
@@ -53,3 +55,44 @@ class Solution(object):
                 r = r + 1
                 
         return res
+   
+# Python3
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if len(matrix) == 0:
+            return matrix
+        
+        n = len(matrix) # row number
+        p = len(matrix[0]) # column number
+        i = 0 # row index
+        j = 0 # column index
+        re = []
+        while True:
+            if p > 0 and j < p and i < n:
+                re += matrix[i][j:p]
+                i = i + 1
+            else:
+                break
+                
+            if n > i and p > 0:
+                for k in range(i, n):
+                    re += [matrix[k][p-1]]
+                p = p - 1
+            else:
+                break
+                
+            if p > j and n > 0:
+                for k in range(p-1,j-1,-1):
+                    re += [matrix[n-1][k]]
+                n = n - 1
+            else:
+                break
+                
+            if n > 0 and n > j:
+                for k in range(n-1,i-1,-1):
+                    re += [matrix[k][j]]
+                j = j + 1
+            else:
+                break
+                
+        return re
