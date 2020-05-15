@@ -57,4 +57,26 @@ class Solution:
             for l in columns:
                 matrix[h][l] = 0
             
-                
+ class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        d = {}
+        for num in nums:
+            if num not in d.keys():
+                d[num] = 1
+            else:
+                d[num] = d[num] + 1
+        import collections
+        d = collections.OrderedDict(sorted(d.items()))
+        ind = []
+        start = 0
+        
+        for key, value in d.items():
+            end = start + value
+            nums[start:end] = [key] * value
+            start = end
+            
+            
+                       
