@@ -80,3 +80,49 @@ class Solution2:
                 left = mid + 1
             
         return left
+
+class Solution3:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if len(nums) == 0:
+            return [-1, -1]
+
+        re = [self.binary_left(nums, target), self.binary_right(nums, target)]
+
+        if len(re) > 0:
+            return [re[0], re[-1]]
+        else:
+            return [-1, -1]
+        
+            
+    def binary_left(self, nums, target):
+        l = 0
+        r = len(nums) - 1
+        while l <= r:
+            m = l + int((r-l) / 2)
+            print('left', nums[l], nums[r], nums[m])
+            if target <= nums[m]:
+                r = m - 1
+            else: #target > nums[m]:
+                l = m + 1
+            
+        if (l >= 0 and l < len(nums) ) and nums[l] == target:
+            return l
+        
+        return -1
+    
+    
+    def binary_right(self, nums, target):
+        l = 0
+        r = len(nums) - 1
+        while l <= r:
+            m = l + int((r-l) / 2)
+            print('right', nums[l], nums[r], nums[m])
+            if target < nums[m]:
+                r = m - 1
+            elif target >= nums[m]:
+                l = m + 1
+            
+        if (r >= 0 and r <= len(nums) - 1) and nums[r] == target:
+            return r
+        
+        return -1
